@@ -111,16 +111,16 @@
                             <!-- small card -->
                             <div class="small-box bg-danger">
                             <div class="inner">
-                                <h3>65</h3>
+                                <h3>{{ totalSales }}</h3>
 
                                 <p>Sales</p>
                             </div>
                             <div class="icon">
                                 <i class="fas fa-chart-pie"></i>
                             </div>
-                            <a href="#" class="small-box-footer">
+                            <router-link to="/sales" class="small-box-footer">
                                 More info <i class="fas fa-arrow-circle-right"></i>
-                            </a>
+                            </router-link>
                             </div>
                         </div>
                         <!-- ./col -->
@@ -143,7 +143,7 @@ export default {
             totalCategory : null,
             totalProduct : null,
             totalPurchase : null,
-            totalSale : null,
+            totalSales : null,
         }
     },
      mounted(){
@@ -213,7 +213,13 @@ export default {
                     })
             },
             getSales(){
-
+                axios.get('/api/sales')
+                    .then(res=>{
+                        this.totalSales = res.data.meta.total
+                    })
+                    .catch(e=>{
+                        console.log(e)
+                    })
             }
         }
 }

@@ -18,7 +18,7 @@ class CustometCollection extends ResourceCollection
             'data' => $this->collection->transform(function($customer){
                 return [
                     'id' => $customer->id,
-                    'name' => $customer->c_name,
+                    'c_name' => $customer->c_name,
                     'company_name' => $customer->company_name,
                     'email' => $customer->email,
                     'phone' => $customer->phone,

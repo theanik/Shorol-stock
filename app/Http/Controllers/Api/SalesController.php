@@ -9,6 +9,8 @@ use App\Sales;
 use App\Purchase;
 use App\Http\Resources\SalesCollection;
 use App\Http\Resources\SalesResource;
+use Illuminate\Support\Facades\Session;
+
 class SalesController extends Controller
 {
     /**
@@ -79,7 +81,9 @@ class SalesController extends Controller
 
                 return new SalesResource($sale);
             }else{
-                return Session::flash('message', 'Product is out of stock!'); 
+                return response()->json([
+                    'message' => 'Product is out of stock'
+                ]);
             }
             
 

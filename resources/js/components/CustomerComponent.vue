@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="col-md-3">
                                 <select v-model="queryFiled" class="form-control" id="fileds">
-                                    <option value="name">Name</option>
+                                    <option value="c_name">Name</option>
                                     <option value="company_name">Company</option>
                                     <option value="email">Enail</option>
                                     <option value="phone">Phone</option>
@@ -57,7 +57,7 @@
                                 <tbody>
                                     <tr v-show="customers.length" v-for="(customer) in customers" :key="customer.id">
                                         <th scope="row">{{ customer.id}}</th>
-                                        <td>{{ customer.name }}</td>
+                                        <td>{{ customer.c_name }}</td>
                                         <td>{{ customer.company_name.length>16 ? customer.company_name.substring(0,16)+" ..." : customer.company_name }}</td>
                                         <td>{{ customer.email.length >16 ? customer.email.substring(0,16)+" ..." : customer.email }}</td>
                                         <td>{{ customer.phone }}</td>
@@ -109,9 +109,9 @@
                           <alert-error :form="form" message="There were some problems with your input."></alert-error>
                                 <div class="form-group">
                                 <label>Customer Name</label>
-                                <input v-model="form.name" type="text" name="name"
-                                    class="form-control" :class="{ 'is-invalid': form.errors.has('name') }">
-                                <has-error :form="form" field="name"></has-error>
+                                <input v-model="form.c_name" type="text" name="c_name"
+                                    class="form-control" :class="{ 'is-invalid': form.errors.has('c_name') }">
+                                <has-error :form="form" field="c_name"></has-error>
                                 </div>
 
                                 <div class="form-group">
@@ -154,7 +154,7 @@
                                 <div class="card-body">
 
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><strong>Name : </strong> {{ showDetails.name }}</li>
+                                        <li class="list-group-item"><strong>Name : </strong> {{ showDetails.c_name }}</li>
                                         <li class="list-group-item"> <strong>Company Name : </strong> {{ showDetails.company_name }}</li>
                                         <li class="list-group-item"><strong>Email : </strong> {{ showDetails.email }}</li>
                                         <li class="list-group-item"><strong>Phone : </strong> {{ showDetails.phone }}</li>
@@ -180,11 +180,11 @@
                 showMode : false,
                 showDetails : [],
                 query : "",
-                queryFiled : "name",
+                queryFiled : "c_name",
                 customers:[],
                 form : new Form({
                     id : '',
-                    name : '',
+                    c_name : '',
                     company_name : '',
                     email : '',
                     phone : '',
@@ -328,7 +328,7 @@
                         $('#customerModalLong').modal('hide');
                         if(this.form.successful){
                             this.$Progress.finish();
-                            this.$snotify.success('Cusomer Update Successfully','Success')
+                            this.$snotify.success('Customer Update Successfully','Success')
                         }else{
                             this.$Progress.fail()
                             this.$snotify.error('Something wend wrong. Try aging','Error')
@@ -388,13 +388,5 @@
         },
         
     }
-    // $(document).ready(function() {
-    // $('#example').DataTable( {
-    //     dom: 'Bfrtip',
-    //     buttons: [
-    //         'copy', 'csv', 'excel', 'pdf', 'print'
-    //     ]
-    //         } );
-    //     } );
 
 </script>

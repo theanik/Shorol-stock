@@ -10,6 +10,9 @@ import Snotify, { SnotifyPosition } from 'vue-snotify'
 import moment from 'moment';
 import Profile from "./Profile";
 import XLSX from 'xlsx';
+import Vue2Filters from 'vue2-filters'
+
+
 
 Vue.prototype.$profile= new Profile(window.user);
 
@@ -21,6 +24,7 @@ const SnotifyOptions = {
   }
 }
 
+Vue.use(Vue2Filters)
 Vue.use(Snotify, SnotifyOptions)
 Vue.use(VueRouter)
 Vue.use(VueProgressBar, {
@@ -48,7 +52,6 @@ Vue.component('customer-component', require('./components/CustomerComponent.vue'
 Vue.component('pagination-component', require('./components/partial/PaginationComponent.vue').default);
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
-
 
 let routes = [
     { path: '/customer', component: require('./components/CustomerComponent.vue').default },

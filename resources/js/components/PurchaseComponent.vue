@@ -59,8 +59,8 @@
                                         <td><a @click.prevent="showSupplierDetails(purchase)"
                                         class="text-primary" style="cursor:pointer">{{ purchase.supplier.name }}</a></td>
                                         <td>{{ purchase.product_quantity }}</td>
-                                        <td>{{ purchase.retail_price }}</td>
-                                        <td>{{ purchase.sale_price }}</td>
+                                        <td>{{ purchase.retail_price | currency}}</td>
+                                        <td>{{ purchase.sale_price | currency}}</td>
                                         
                                         <td>
                                             <button type="button" @click.prevent="show(purchase)" class="btn btn-info btn-sm">
@@ -162,8 +162,8 @@
                                         <li class="list-group-item"><strong>Product Name : </strong> {{ showDetails.product.name }}</li>
                                         <li class="list-group-item"> <strong>Category Name : </strong> {{ showDetails.product.cat_name }}</li>
                                         <li class="list-group-item"><strong>Product Code : </strong> {{ showDetails.product.code }}</li>
-                                        <li class="list-group-item"><strong>Retail Price : </strong> {{ showDetails.retail_price }}</li>
-                                        <li class="list-group-item"><strong>Sale Price : </strong> {{ showDetails.sale_price }}</li>
+                                        <li class="list-group-item"><strong>Retail Price : </strong> {{ showDetails.retail_price | currency }}</li>
+                                        <li class="list-group-item"><strong>Sale Price : </strong> {{ showDetails.sale_price | currency}}</li>
                                         <li class="list-group-item"><strong>Product Details : </strong> {{ showDetails.product.description }}</li>
 
                                         <li class="list-group-item"> <strong>Supplier Name : </strong> {{ showDetails.supplier.name }}</li>

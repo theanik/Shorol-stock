@@ -60,7 +60,7 @@
                                         <td><a @click.prevent="showCustomerDetails(sale.customer_id)"
                                         class="text-primary" style="cursor:pointer">{{ sale.c_name}}</a></td>
                                         <td>{{ sale.quantity }}</td>
-                                        <td>{{ sale.t_price }}</td>
+                                        <td>{{ sale.t_price | currency}}</td>
                                         
                                         <td>
                                             <button type="button" @click.prevent="show(sale)" class="btn btn-info btn-sm">
@@ -79,9 +79,10 @@
                                     
                                 </tbody>
                                 </table>
-                                <!-- <pagination-component v-if="pagination.last_page > 1"
+                                <pagination-component v-if="pagination.last_page > 1"
                                     :pagination="pagination"
-                                    :offset="5"></pagination-component> -->
+                                    :offset="5"
+                                    @paginate="getSales"></pagination-component>
                         </div>
 
                         <!-- end table -->
@@ -101,7 +102,7 @@
                             <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form v-if="showMode == false" @submit.prevent=" editMode ? update() : store()" @keydown="form.onKeydown($event)">
+                        <form v-if="showMode == false" @submit.prevent="store()" @keydown="form.onKeydown($event)">
                         <div class="modal-body">
                           <alert-error :form="form" message="There were some problems with your input."></alert-error>
                                 
@@ -118,7 +119,7 @@
                                 <label>Select Customer </label>
                                     <select v-model="form.customer_id" name="customer_id" required 
                                         class="form-control" :class="{ 'is-invalid': form.errors.has('customer_id') }" placeholder="Select Category">
-                                        <option v-for="customer in customers" :key="customer.id" v-bind:value="customer.id">{{ customer.name }}</option>
+                                        <option v-for="customer in customers" :key="customer.id" v-bind:value="customer.id">{{ customer.c_name }}</option>
                                     </select>
                                 <has-error :form="form" field="customer_id"></has-error>
                                 </div>
@@ -148,10 +149,10 @@
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item"><strong>Porduct Name : </strong> {{ showDetails.name }}</li>
                                         <li class="list-group-item"><strong>Porduct Code : </strong> {{ showDetails.code }}</li>
-                                        <li class="list-group-item"><strong>Retail Price : </strong> {{ showDetails.retail_price }}</li>
-                                        <li class="list-group-item"><strong>Sale Price: </strong> {{ showDetails.sale_price }}</li>
+                                        <li class="list-group-item"><strong>Retail Price : </strong> {{ showDetails.retail_price | currency}}</li>
+                                        <li class="list-group-item"><strong>Sale Price: </strong> {{ showDetails.sale_price | currency}}</li>
                                         <li class="list-group-item"><strong>Quantity : </strong> {{ showDetails.quantity }}</li>
-                                        <li class="list-group-item"><strong>Total Ammount : </strong> {{ showDetails.t_price }}  
+                                        <li class="list-group-item"><strong>Total Ammount : </strong> {{ showDetails.t_price | currency}}  
                                         ({{ showDetails.sale_price }} X {{ showDetails.quantity }})
                                         </li>
                                         <hr>
@@ -201,7 +202,7 @@
                                 <div class="card-body">
 
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><strong>Customer Name : </strong> {{ showDetails.name }}</li>
+                                        <li class="list-group-item"><strong>Customer Name : </strong> {{ showDetails.c_name }}</li>
                                         <li class="list-group-item"><strong>Customer Company : </strong> {{ showDetails.company_name }}</li>
                                         <li class="list-group-item"><strong>Phone : </strong> {{ showDetails.phone }}</li>
                                         <li class="list-group-item"><strong>E-mail : </strong> {{ showDetails.email }}</li>
@@ -247,7 +248,12 @@
                 showCustomerMode : false,
                 data :{
                     exportdata : []
-                }
+                },
+                message : '',
+                pagination:{
+                    
+                },
+                current_page : 1
 
             }
         },computed: {
@@ -283,10 +289,12 @@
                 },
             getSales(){
                 this.$Progress.start()
-                axios.get('/api/salesdata')
+                axios.get('/api/salesdata?page='+this.pagination.current_page)
                     .then(res=>{
                         this.exportdata = res.data.data
                         this.sales = res.data.data
+                        this.pagination = res.data
+                        this.current_page = res.data.current_page
                         this.$Progress.finish()
                     })
                     .catch(e=>{
@@ -307,7 +315,6 @@
                     })
             },
             create(){
-                this.editMode = false
                 this.showMode = false
                 this.form.reset()
                 this.form.clear()
@@ -319,14 +326,22 @@
                 this.form.post('/api/sales')
                     .then(res=>{
                         this.getSales()
-                        $('#ModalLong').modal('hide');
-                        if(this.form.successful){
-                            this.$Progress.finish();
-                            this.$snotify.success('Product Add Successfully','Success')
-                        }else{
+                       // console.log(res.data.message)
+                        this.message = res.message
+                        if(res.data.message){
                             this.$Progress.fail()
-                            this.$snotify.error('Something wend wrong. Try aging','Error')
+                            this.$snotify.error('Product Quantity is out Srock ','Error')
+                        }else{
+                            $('#ModalLong').modal('hide');
+                            if(this.form.successful){
+                                this.$Progress.finish();
+                                this.$snotify.success('Product Add Successfully','Success')
+                            }else{
+                                this.$Progress.fail()
+                                this.$snotify.error('Something wend wrong. Try aging','Error')
+                            }
                         }
+                       
                     })
                     .catch(e=>{
                         this.$Progress.fail()
@@ -401,7 +416,7 @@
             showProductDetails(product_id){
                 this.editMode = false
                 this.showMode = false
-                this.showSupplierMode = false
+                this.showCustomerMode = false
                 this.showProMode = true
                 $('#ModalLong2').modal('show');
                 axios.get('/api/product/'+product_id)

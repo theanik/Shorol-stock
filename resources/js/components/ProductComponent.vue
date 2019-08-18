@@ -201,8 +201,6 @@
             csvData() {
             return this.exportdata.map(item => ({
                 ...item,
-                //id: item.id, //item.address.city,
-                //name: 'компания'//item.company.name
             }));
             }
         },

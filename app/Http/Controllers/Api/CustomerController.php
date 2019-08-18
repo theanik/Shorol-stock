@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Customer;
+use App\Sales;
 use App\Http\Resources\CustometCollection;
 use App\Http\Resources\CustometResource;
 
@@ -37,7 +38,7 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'c_name' => 'required',
             'company_name' => 'required',
             'email' => 'required|email|unique:customers',
             'phone' => 'required|numeric',
@@ -45,7 +46,7 @@ class CustomerController extends Controller
         ]);
 
         $customer = new Customer();
-        $customer->name = $request->name;
+        $customer->c_name = $request->c_name;
         $customer->company_name = $request->company_name;
         $customer->email = $request->email;
         $customer->phone = $request->phone;
@@ -76,7 +77,7 @@ class CustomerController extends Controller
     public function update(Request $request, $id)
     {
          $request->validate([
-            'name' => 'required',
+            'c_name' => 'required',
             'company_name' => 'required',
             'email' => 'required|email|unique:customers,email,'.$id,
             'phone' => 'required|numeric',
@@ -84,7 +85,7 @@ class CustomerController extends Controller
         ]);
 
         $customer = Customer::findOrFail($id);
-        $customer->name = $request->name;
+        $customer->c_name = $request->c_name;
         $customer->company_name = $request->company_name;
         $customer->email = $request->email;
         $customer->phone = $request->phone;
@@ -101,6 +102,7 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
+        $delSales = Sales::where('customer_id',$id)->delete();
         $customer = Customer::findOrFail($id);
         $customer->delete();
         return new CustometResource($customer);

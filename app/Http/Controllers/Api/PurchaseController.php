@@ -8,6 +8,7 @@ use App\Purchase;
 use App\Product;
 use App\Category;
 use App\Supplier;
+use App\Sales;
 use App\Http\Resources\PurchaseCollection;
 use App\Http\Resources\PurchaseResource;
 use App\Http\Resources\ProductCollection;
@@ -121,6 +122,7 @@ class PurchaseController extends Controller
      */
     public function destroy($id)
     {
+        $delSales = Sales::where('purchases_id',$id)->delete();
         $purschase = Purchase::findOrFail($id);
         $purschase->delete();
         return new PurchaseResource($purschase);
