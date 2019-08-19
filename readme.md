@@ -1,7 +1,9 @@
 ## Shorol Stock
 This is a demo of stock management Single Page Application.
 
-## Techstack
+![Screenshot from 2019-08-20 01-02-13](https://user-images.githubusercontent.com/47061421/63293238-6938a800-c2e9-11e9-80d7-88d3d3305eef.png)
+
+## Techstask
 - Laravel 5.8
 - Vue.js
 - mysql
