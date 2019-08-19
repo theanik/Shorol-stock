@@ -7,14 +7,16 @@ This is a demo of stock management Single Page Application.
 - mysql
 
 ## Features
-- Customer Manage- Add | Edit| Detete | View
-- Supplier Manage- Add | Edit | Detete | View
-- Category Manage- Add | Edit | Detete | View
-- Product Manage- Add | Edit| Detete | View
-- Stock || Purchase Manage- Add | Edit| Detete | View
-- Sales Manage- Add | ~~Edit~~| Detete | View
-- Admin(user) Manage- Add | ~~Edit~~| Detete | View
+- Customer Management
+- Supplier Management
+- Category Management
+- Product Management
+- Stock || Purchase Management
+- Sales Management
+- Admin(user) Management
 - user profile
+- Search
+- Pagination
 - Export table as CSV
 
 ## Tach Features
@@ -30,29 +32,17 @@ This is a demo of stock management Single Page Application.
 - vue-progress-var
 - axios
 
-## to run this project
-git clone or download this project
+## How to use
 
-Create a database in mysql : laratask
+- Clone the repository with __git clone__
+- Copy __.env.example__ file to __.env__ and edit database credentials there
+- Run __composer install__
+- Run __php artisan migrate --seed__ (it has some seeded data for your testing)
+- Run __npm install__ or __yarn__
+- Run __php artisan config:cache__
+- Run __php artisan serve__ (serve at localhost:8000)
+- Run __npm run dev__ or __npm run watch__
+- That's it: launch the main URL and login with default credentials Email :  __admin@task.com__ - Password : __adminpass__
 
-```
-composer install
-npm install or yarn
 
-<!-- start your localservel -xampp -->
 
-php artisan migrate
-php artisan db:seed
-
-# serve at localhost:8000
-php artisan serve
-
-#vue development mode
-npm run watch or npm run watch-poll
-
-```
-
-## to log in
-Email : admin@task.com
-
-Password : adminpass

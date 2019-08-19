@@ -18,17 +18,17 @@
                                 <ul class="nav flex-column">
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
-                                    Name : {{user.name}}
+                                    Name : {{ user.name }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
-                                    Email : {{user.email}}
+                                    Email : {{ user.email }}
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
-                                    Created At : {{user.created_at | mydate}}
+                                    Created At : {{ user.created_at | mydate }}
                                     </a>
                                 </li>
                                 

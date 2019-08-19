@@ -37,7 +37,6 @@ Route::get('/search/product/{field}/{query}','ProductController@search');
 Route::get('/search/supplier/{field}/{query}','SupplierController@search');
 Route::get('/search/category/{query}','CategoryController@search');
 Route::get('/search/user/{field}/{query}','UserController@search');
-Route::get('/search/purchase/{field}/{query}','PurchaseController@search');
 //all dataget api
 Route::get('/allproduct','ProductController@allproduct');
 Route::get('/allsupplier','SupplierController@allsupplier');

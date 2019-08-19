@@ -12,7 +12,7 @@
                                 <!-- small card -->
                                 <div class="small-box bg-success">
                                 <div class="inner">
-                                    <h3>{{totalAdmin}}</h3>
+                                    <h3>{{ totalAdmin }}</h3>
 
                                     <p>Admin</p>
                                 </div>
@@ -28,7 +28,7 @@
                             <!-- small card -->
                             <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>{{totalCusomer}}</h3>
+                                <h3>{{ totalCusomer }}</h3>
 
                                 <p>Total Customer</p>
                             </div>
@@ -44,7 +44,7 @@
                             <!-- small card -->
                             <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>{{totalSupplier}}</h3>
+                                <h3>{{ totalSupplier }}</h3>
 
                                 <p>Total Supplier</p>
                             </div>
@@ -76,7 +76,7 @@
                             <!-- small card -->
                             <div class="small-box bg-info">
                             <div class="inner">
-                                <h3>{{totalProduct}}</h3>
+                                <h3>{{ totalProduct }}</h3>
 
                                 <p>Total Product</p>
                             </div>
@@ -93,7 +93,7 @@
                             <!-- small card -->
                             <div class="small-box bg-warning">
                             <div class="inner">
-                                <h3>{{totalPurchase}}</h3>
+                                <h3>{{ totalPurchase }}</h3>
 
                                 <p>Total Purchases</p>
                             </div>

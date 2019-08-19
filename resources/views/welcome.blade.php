@@ -18,6 +18,7 @@
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
+                font-weight: bold;
             }
 
             .full-height {
@@ -68,7 +69,7 @@
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title m-b-md text-success">
-                    Shorol Stock
+                    Sh<span class="text-danger">o</span>rol Stock
                 </div>
                 <div class="row">
                     <div class="col-md-4"></div>

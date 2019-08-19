@@ -16,26 +16,7 @@
 
                     <div class="card-body">
                         <div class="mb-3">
-                            <div class="row">
-                                <div class="col-md-2">
-                                <strong>Search By :</strong>
-                                </div>
-                                <div class="col-md-3">
-                                <select v-model="queryFiled" class="form-control" id="fileds">
-                                    <option value="product">Product</option>
-                                    <option value="supplier">Supplier</option>
-                                </select>
-                                </div>
-                                <div class="col-md-5">
-                                <input v-model="query" type="text" class="form-control" placeholder="Search">
-                                </div>
-                                <div class="col-md-2">
-                                     <button type="button" class="btn btn-primary" >
-                                        Reset Search
-                                        <i class="fas fa-sync"></i>
-                                    </button>
-                                </div>
-                            </div>
+                           
                         </div>
                         <!-- table  -->
                         <div class="table-responsive">
@@ -99,7 +80,7 @@
                         <div class="modal-header">
 
                             <h5 v-if="showMode == true" class="modal-title text-info" id="exampleModalLongTitle">Purchases Details for <strong>{{ showDetails.product.name }}</strong> </h5>
-                            <h5 v-else class="modal-title text-primary" id="exampleModalLongTitle">{{ editMode ? "Edit" : "Add New"}}  Product</h5>
+                            <h5 v-else class="modal-title text-primary" id="exampleModalLongTitle">{{ editMode ? "Edit" : "Purchase"}}  Product</h5>
                             
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
