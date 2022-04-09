@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "admin-lte": "^3.0.0-alpha.2",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "tableexport": "^5.2.0",
     "vform": "^1.0.1",
     "vue-json-excel": "^0.2.98",
